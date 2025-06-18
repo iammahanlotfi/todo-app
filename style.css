@@ -77,7 +77,6 @@ button:hover {
 
 table { 
     width: 100%;
-    margin-top: 60px;   
 }
 thead { 
     background-color: var(--color-background);
@@ -114,5 +113,24 @@ tbody td button:nth-child(2) {
 
 
 tbody td button:nth-child(3) { 
+    background-color: var(--color-error);
+}
+
+#alert-message { 
+    width: 100%;
+    height: 40px;
+    display: flex;
+    align-items: center;
+}
+.alert { 
+    width: 100%; 
+    text-align: center;
+    border-radius: 4px;
+    padding: 5px;
+}
+.alert-success { 
+    background-color: var(--color-success);
+}
+.alert-error { 
     background-color: var(--color-error);
 }
