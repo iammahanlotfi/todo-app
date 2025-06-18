@@ -3,7 +3,8 @@ const dateInput = document.getElementById("date-input") ;
 const addButton = document.getElementById("add-button") ; 
 const alertMessage = document.getElementById("alert-message") ; 
 const todosBody = document.querySelector("tbody") ; 
- 
+const deleteAllbutton = document.getElementById("delete-all-button") ; 
+
 let todos = JSON.parse(localStorage.getItem("todos")) ; 
 
 if(todos === null) { 
@@ -13,7 +14,7 @@ if(todos === null) {
 const generateID = () => { 
     const id = Math.round(Math.random() * Math.random() * Math.pow(10 , 10)).toString() ; 
     return(id) ; 
-}
+};
 
 
 const showAlert  = (message , type) => { 
@@ -29,11 +30,11 @@ const showAlert  = (message , type) => {
         alert.style.display = "none" ; 
     } , 2500)
 
-}
+} ; 
 
 const saveToLocalStorage = ()=> { 
     localStorage.setItem("todos" , JSON.stringify(todos)) ; 
-}
+}; 
 
 const displayTodos = () => { 
     todosBody.innerHTML = "" ; 
@@ -62,8 +63,7 @@ const displayTodos = () => {
             `          
         });
     }
-}
-displayTodos() ;
+} ; 
 
 const addHandler = ()=> {
     
@@ -90,4 +90,19 @@ const addHandler = ()=> {
     }
 }; 
 
+const deleteAllHandler = () => {
+    if(todos.length) {
+
+        todos = [] ; 
+        localStorage.clear() ;
+        displayTodos() ;
+        showAlert("All todos deleted successfully." , "success") ; 
+    }
+    else { 
+        showAlert("No todo to delete." , "error") ; 
+    }
+}
+
+window.addEventListener("load" , displayTodos) ; 
 addButton.addEventListener("click" , addHandler) ; 
+deleteAllbutton.addEventListener("click" , deleteAllHandler) ; 
