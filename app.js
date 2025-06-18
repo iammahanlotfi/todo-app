@@ -58,7 +58,7 @@ const displayTodos = () => {
                 <td>
                     <button>Edit</button>
                     <button>Do</button>
-                    <button>Delete</button>
+                    <button onclick = "deleteHandler('${todo.ID}')">Delete</button>
                 </td>     
             `          
         });
@@ -101,6 +101,16 @@ const deleteAllHandler = () => {
     else { 
         showAlert("No todo to delete." , "error") ; 
     }
+}
+
+
+const deleteHandler = (id) => { 
+    const newTodos = todos.filter((todo) => todo.ID !== id);
+    todos = newTodos ; 
+    saveToLocalStorage() ; 
+    displayTodos() ; 
+    showAlert("Todo deleted successfully." , "success") ; 
+    
 }
 
 window.addEventListener("load" , displayTodos) ; 
