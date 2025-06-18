@@ -3,15 +3,17 @@ const dateInput = document.getElementById("date-input") ;
 const addButton = document.getElementById("add-button") ; 
 const alertMessage = document.getElementById("alert-message") ; 
 const todosBody = document.querySelector("tbody") ; 
-
-let ID = 0 ; 
-
+ 
 let todos = JSON.parse(localStorage.getItem("todos")) ; 
 
 if(todos === null) { 
     todos = [] ; 
 }
 
+const generateID = () => { 
+    const id = Math.round(Math.random() * Math.random() * Math.pow(10 , 10)).toString() ; 
+    return(id) ; 
+}
 
 
 const showAlert  = (message , type) => { 
@@ -64,11 +66,11 @@ const displayTodos = () => {
 displayTodos() ;
 
 const addHandler = ()=> {
-    ID = ID + 1 ; 
+    
     const task = taskInput.value.toLowerCase().trim(); 
     const date = dateInput.value.toLowerCase().trim();
     const todo = {
-        'ID' : ID , 
+        'ID' : generateID() , 
         'task' : task ,
         'date' : date ,
         'completed' : false
