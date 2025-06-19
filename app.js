@@ -4,6 +4,7 @@ const addButton = document.getElementById("add-button") ;
 const alertMessage = document.getElementById("alert-message") ; 
 const todosBody = document.querySelector("tbody") ; 
 const deleteAllbutton = document.getElementById("delete-all-button") ; 
+const editButton = document.getElementById("edit-button") ;  
 
 let todos = JSON.parse(localStorage.getItem("todos")) ; 
 
@@ -56,7 +57,7 @@ const displayTodos = () => {
                 <td>${todo.date ? todo.date : "No date."}</td> 
                 <td>${todo.completed ? "Completed" : "Pending"} </td> 
                 <td>
-                    <button>Edit</button>
+                    <button onclick = "editHandler('${todo.ID}')">Edit</button>
                     <button onclick = "statusHandler('${todo.ID}')">${todo.completed ? "Undo" : "Do"}</button>
                     <button onclick = "deleteHandler('${todo.ID}')">Delete</button>
                 </td>     
@@ -131,6 +132,38 @@ const statusHandler = (id) => {
     showAlert("Todo status changed successfully." , "success");
 }
 
+
+// const task = taskInput.value.toLowerCase().trim(); 
+
+
+const editHandler = (id) => {
+
+    const todo = todos.find((todo) => todo.ID === id ) ; 
+    taskInput.value = todo.task ; 
+    dateInput.value = todo.date ;
+    addButton.style.display = "none";
+    editButton.style.display = "inline-block";
+    editButton.dataset.id = id ;
+    
+}
+
+const applyEdit  = (event)=> { 
+    
+    const todo = todos.find((todo) => todo.ID === event.target.dataset.id) ;
+    todo.task = taskInput.value;
+    todo.date = dateInput.value;
+    saveToLocalStorage();
+    displayTodos();
+    showAlert("Todo edited successfully." , "success") ;
+    taskInput.value = "";
+    dateInput.value = "";
+    editButton.style.display = "none";
+    addButton.style.display = "inline-block";
+
+}
+
+
 window.addEventListener("load" , displayTodos) ; 
 addButton.addEventListener("click" , addHandler) ; 
 deleteAllbutton.addEventListener("click" , deleteAllHandler) ; 
+editButton.addEventListener("click" , applyEdit);
