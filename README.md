@@ -1,3 +1,5 @@
+https://iammahanlotfi.github.io/todo-app/
+
 # 📝 Todo App
 
 A simple and fully functional Todo List application built using **HTML**, **CSS**, and **Vanilla JavaScript**. Users can add, edit, delete, and filter tasks — with localStorage support to persist data in the browser.
@@ -9,7 +11,6 @@ A simple and fully functional Todo List application built using **HTML**, **CSS*
 - Delete individual tasks or all at once
 - Filter tasks by status: All | Pending | Completed
 - Alerts for success and error messages
-- Responsive and modern UI using CSS variables
 - Persistent storage via `localStorage`
 
 ## 🛠️ Tech Stack
